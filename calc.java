@@ -72,28 +72,28 @@ public class calc {
     }
 
     /**
-     * Adds two values and pushes the result onto the stack.
+     * Computes the sum of two values and pushes the result onto the stack.
      * @param op1 The first operand.
      * @param op2 The second operand.
      */
     public void add(double op1, double op2) { output = stack.push(op1 + op2); }
 
     /**
-     * Subtracts two values and pushes the result onto the stack.
+     * Computes the difference of two values and pushes the result onto the stack.
      * @param op1 The first operand.
      * @param op2 The second operand.
      */
     public void sub(double op1, double op2) { output = stack.push(op1 - op2); }
 
     /**
-     * Multiplies two values and pushes the result onto the stack.
+     * Computes the product of two values and pushes the result onto the stack.
      * @param op1 The first operand.
      * @param op2 The second operand.
      */
     public void mul(double op1, double op2) { output = stack.push(op1 * op2); }
 
     /**
-     * Calculates the quotient of two values and pushes the result onto the stack.
+     * Computes the quotient of two values and pushes the result onto the stack.
      * If the divisor is zero, the result is set to zero.
      * @param op1 The dividend.
      * @param op2 The divisor.
@@ -116,44 +116,217 @@ public class calc {
     public void root(double op1, double op2) { if (op1 > -1) { output = stack.push(Math.pow(op1,1/op2)); } else { output = stack.push(0); } }
 
     /**
-     * 
-     * @param op1
-     * @param op2
+     * Uses the second value to compute a percentage of the first value..
+     * e.g.: The result of pct(1,5) is 0.05 (5% of 1). Pushes the result onto the
+     * stack.
+     * @param op1 The base value.
+     * @param op2 The percentage.
      */
     public void pct(double op1, double op2) { output = stack.push(op1 * (op2/100)); }
+
+    /**
+     * Calculates the modulus of a division and pushes the result onto the stack.
+     * @param op1 The dividend.
+     * @param op2 The divisor.
+     */
     public void mod(double op1, double op2) { output = stack.push(op1 % op2); }
+
+    /**
+     * Alias of add(double,double). Uses the stack value as the first operand.
+     * @param op The second operand.
+     */
     public void add(double op) { add(stack.pop(), op); }
+
+    /**
+     * Alias of sub(double,double). Uses the stack value as the first operand.
+     * @param op The second operand.
+     */
     public void sub(double op) { sub(stack.pop(), op); }
+
+    /**
+     * Alias of mul(double,double). Uses the stack value as the first operand.
+     * @param op The second operand.
+     */
     public void mul(double op) { mul(stack.pop(), op); }
+
+    /**
+     * Alias of div(double,double). Uses the stack value as the dividend.
+     * @param op The divisor.
+     */
     public void div(double op) { div(stack.pop(), op); }
+
+    /**
+     * Alias of exp(double,double). Uses the stack value as the base.
+     * @param op The exponent.
+     */
     public void exp(double op) { exp(stack.pop(), op); }
+
+    /**
+     * Alias of root(double,double). Uses the stack value as the radicand.
+     * @param op The index.
+     */
     public void root(double op) { root(stack.pop(), op); }
+
+    /**
+     * Alias of pct(double,double). Uses the stack value as the base.
+     * @param op The percentage.
+     */
     public void pct(double op) { pct(stack.pop(), op); }
+
+    /**
+     * Alias of mod(double,double). Uses the stack value as the dividend.
+     * @param op The divisor.
+     */
     public void mod(double op) { mod(stack.pop(), op); }
+
+    /**
+     * Squares the passed value and pushes the result onto the stack.
+     * @param op The base.
+     */
     public void sqr(double op) { exp(op,2); }
+
+    /**
+     * Cubes the passed value and pushes the result onto the stack.
+     * @param op The base.
+     */
     public void cube(double op) { exp(op,3); }
+
+    /**
+     * Computes the square root of the passed value and pushes the result onto the stack.
+     * @param op The radicand.
+     */
     public void sqrt(double op) { root(op,2); }
+
+    /**
+     * Computes the cube root of the passed value and pushes the result onto the stack.
+     * @param op The radicand.
+     */
     public void cbrt(double op) { root(op,3); }
+
+    /**
+     * Computes the reciprocal of the passed value and pushes the result onto the stack.
+     * @param op The base.
+     */
     public void rcp(double op) { exp(op,-1); }
+
+    /**
+     * Inverts the passed value and pushes the result onto the stack.
+     * @param op The base.
+     */
     public void neg(double op) { mul(op,-1); }
+
+    /**
+     * Computes the base 10 log of the passed value and pushes the result onto the stack.
+     * @param op The argument.
+     */
     public void log(double op) { output = stack.push(Math.log10(op)); }
+
+    /**
+     * Computes the natural log of the passed value and pushes the result onto the stack.
+     * @param op The argument.
+     */
     public void ln(double op) { output = stack.push(Math.log(op)); }
+
+    /**
+     * Computes a power of 10 and pushes the result onto the stack.
+     * @param op The exponent.
+     */
     public void pow10(double op) { exp(10, op); }
+
+    /**
+     * Computes a power of 2 and pushes the result onto the stack.
+     * @param op The exponent.
+     */
     public void pow2(double op) { exp(2, op); }
+
+    /**
+     * Computes the sine of the passed value and pushes the result onto the stack.
+     * @param op
+     */
     public void sin(double op) { output = stack.push(Math.sin(op)); }
+
+    /**
+     * Computes the cosine of the passed value and pushes the result onto the stack.
+     * @param op
+     */
     public void cos(double op) { output = stack.push(Math.cos(op)); }
+
+    /**
+     * Computes the tangent of the passed value and pushes the result onto the stack.
+     * @param op
+     */
     public void tan(double op) { output = stack.push(Math.tan(op)); }
+
+    /**
+     * Computes the secant of the passed value and pushes the result onto the stack.
+     * @param op
+     */
     public void sec(double op) { rcp(Math.sin(op)); }
+
+    /**
+     * Computes the cosecant of the passed value and pushes the result onto the stack.
+     * @param op
+     */
     public void csc(double op) { rcp(Math.cos(op)); }
+
+    /**
+     * Computes the cotangent of the passed value and pushes the result onto the stack.
+     * @param op
+     */
     public void cot(double op) { rcp(Math.tan(op)); }
+
+    /**
+     * Computes the arcsine of the passed value and pushes the result onto the stack.
+     * @param op
+     */
     public void arcsin(double op) { output = stack.push(Math.asin(op)); }
+
+    /**
+     * Computes the arccosine of the passed value and pushes the result onto the stack.
+     * @param op
+     */
     public void arccos(double op) { output = stack.push(Math.acos(op)); }
+
+    /**
+     * Computes the arctangent of the passed value and pushes the result onto the stack.
+     * @param op
+     */
     public void arctan(double op) { output = stack.push(Math.atan(op)); }
+
+    /**
+     * Computes the arcsecant of the passed value and pushes the result onto the stack.
+     * @param op
+     */
     public void arcsec(double op) { rcp(Math.asin(op)); }
+
+    /**
+     * Computes the arccosecant of the passed value and pushes the result onto the stack.
+     * @param op
+     */
     public void arccsc(double op) { rcp(Math.acos(op)); }
+
+    /**
+     * Computes the arccotangent of the passed value and pushes the result onto the stack.
+     * @param op
+     */
     public void arccot(double op) { rcp(Math.atan(op)); }
+
+    /**
+     * Computes the hyperbolic sine of the passed value and pushes the result onto the stack.
+     * @param op
+     */
     public void sinh(double op) { output = stack.push(Math.sinh(op)); }
+
+    /**
+     * Computes the hyperbolic cosine of the passed value and pushes the result onto the stack.
+     * @param op
+     */
     public void cosh(double op) { output = stack.push(Math.cosh(op)); }
+
+    /**
+     * Computes the hyperbolic tangent of the passed value and pushes the result onto the stack.
+     * @param op
+     */
     public void tanh(double op) { output = stack.push(Math.tanh(op)); }
 
     /**
